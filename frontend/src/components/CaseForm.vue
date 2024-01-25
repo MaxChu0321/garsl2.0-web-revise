@@ -4,40 +4,46 @@
       class="q-gutter-md custom-bg"
     >
       <div class="row q-gutter-md">
-        <q-input outlined color="indigo-9" type="number" step="0.1" v-model="form.tumor_size" label="Tumor size" 
+        <q-input outlined color="indigo-9" type="number" step="0.1" v-model="form.tumor_size" label="Tumor size(cm)" 
         :rules="[val => (val >= 0 && val <= 10) || 'Value must be between 0 and 10']"/>
         <q-input outlined color="indigo-9" type="number" step="1" v-model="form.tumor_number" label="Tumor number" 
         :rules="[val => Number.isInteger(Number(val)) || 'Value must be an integer']"/>
-        <q-input outlined color="indigo-9" type="number" step="1" v-model="form.ishak" label="Ishak fibrosis stage" 
-        :rules="[val => Number.isInteger(Number(val)) || 'Value must be an integer']"/>
-        <q-input outlined color="indigo-9" type="number" step="0.01" v-model="form.bmi" label="BMI" />
+        <!-- <q-input outlined color="indigo-9" type="number" step="0.01" v-model="form.bmi" label="BMI" /> -->
+        <q-input outlined color="indigo-9" type="number" step="0.01" v-model="form.height" label="Height(cm)" />
+        <q-input outlined color="indigo-9" type="number" step="0.01" v-model="form.weight" label="Weight(kg)" />
+        
       </div>
       <div class="row q-gutter-md">
-        <q-input outlined color="indigo-9" type="number" step="1" v-model="form.steatosis_grade" label="Steatosis grade" />
-        <q-input outlined color="indigo-9" type="number" step="0.1" v-model="form.k" label="K" />
-        <q-input outlined color="indigo-9" type="number" step="1" v-model="form.ast" label="AST" />
-        <q-input outlined color="indigo-9" type="number" step="1" v-model="form.hbsag" label="HBsAg" />
+        <!-- <q-input outlined color="indigo-9" type="number" step="1" v-model="form.steatosis_grade" label="Steatosis grade" /> -->
+        
+        <q-input outlined color="indigo-9" type="number" step="1" v-model="form.ast" label="AST(U/L)" />
+        <q-input outlined color="indigo-9" type="number" step="1" v-model="form.afp" label="AFP(ng/mL)" />
+        <q-input outlined color="indigo-9" type="number" step="0.01" v-model="form.bili" label="Bilirubin(mg/dL)" />
+        <q-input outlined color="indigo-9" type="number" step="0.01" v-model="form.alb" label="Albumin(g/dL)" />
+        <!-- <q-input outlined color="indigo-9" type="number" step="1" v-model="form.hbsag" label="HBsAg" /> -->
       </div>
-      <div class="row q-gutter-md">
-        <q-input outlined color="indigo-9" type="number" step="1" v-model="form.mvi" label="Microvascular invasion" />
-        <q-input outlined color="indigo-9" type="number" step="0.1" v-model="form.histologic_grade" label="Histologic grade" />
-        <q-input outlined color="indigo-9" type="number" step="1" v-model="form.afp" label="AFP" />
+      <!-- <div class="row q-gutter-md"> -->
+        <!-- <q-input outlined color="indigo-9" type="number" step="1" v-model="form.mvi" label="Microvascular invasion" /> -->
+        <!-- <q-input outlined color="indigo-9" type="number" step="0.1" v-model="form.histologic_grade" label="Histologic grade" /> -->
+        <!-- <q-input outlined color="indigo-9" type="number" step="1" v-model="form.afp" label="AFP(ng/mL)" /> -->
         <!-- <q-input outlined color="indigo-9" type="number" step="0.01" v-model="form.steatosis_grade2" label="Steatosis grade2" /> -->
-      </div>
+      <!-- </div> -->
+
       <div class="row q-gutter-md">
-            <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
+        <q-input outlined color="indigo-9" type="number" step="0.1" v-model="form.k" label="K(mmol/L)" />
+            <!-- <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
             ALBIgrade
             <q-option-group
                 :options="[
-                { label: '0', value: 0, color: 'green' },
-                { label: '1', value: 1, color: 'yellow' },
-                { label: '2', value: 2, color: 'red' }
+                { label: 'I', value: 0, color: 'green' },
+                { label: 'II', value: 1, color: 'yellow' },
+                { label: 'III', value: 2, color: 'red' }
                 ]"
                 type="radio"
                 inline
                 v-model="form.albigrade"
             />
-            </div>
+            </div> -->
         
             <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
             BCLC stage
@@ -53,46 +59,82 @@
                 v-model="form.bclc"
             />
             </div>
-            <!-- <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
-            class_Histologic grade
+            <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
+            Steatosis grade
+            <q-option-group
+                :options="[
+                { label: 'None', value: 0, color: 'green' },
+                { label: 'Mild', value: 1, color: 'yellow' },
+                { label: 'Moderate', value: 2, color: 'orange' },
+                { label: 'Severe', value: 3, color: 'red' },
+                ]"
+                type="radio"
+                inline
+                v-model="form.steatosis_grade"
+            />
+            </div>
+            </div>
+            <div class="row q-gutter-md">
+            <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
+            Microvascular invasion
+            <q-option-group
+                :options="[
+                { label: 'Absence', value: 0, color: 'green' },
+                { label: 'Presence', value: 1, color: 'red' }
+                ]"
+                type="radio"
+                inline
+                v-model="form.mvi"
+            />
+            </div>
+            <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
+            HBsAg
+            <q-option-group
+                :options="[
+                { label: 'Negative', value: 0, color: 'green' },
+                { label: 'Positive', value: 1, color: 'red' }
+                ]"
+                type="radio"
+                inline
+                v-model="form.hbsag"
+            />
+            </div>
+            <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
+            Histologic grade
+            <q-option-group
+                :options="[
+                { label: '1', value: 1, color: 'green' },
+                { label: '2', value: 2, color: 'yellow' },
+                { label: '3', value: 3, color: 'orange' },
+                { label: '4', value: 4, color: 'red' },
+                ]"
+                type="radio"
+                inline
+                v-model="form.histologic_grade"
+            />
+            </div>
+            
+            </div>
+            <div class="row q-gutter-md">
+            <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
+            Ishak fibrosis stage
             <q-option-group
                 :options="[
                 { label: '0', value: 0, color: 'green' },
                 { label: '1', value: 1, color: 'yellow' },
-                { label: '2', value: 2, color: 'orange' },
-                { label: '3', value: 3, color: 'red' },
+                { label: '2', value: 2, color: 'yellow' },
+                { label: '3', value: 3, color: 'orange' },
+                { label: '4', value: 4, color: 'orange' },
+                { label: '5', value: 5, color: 'red' },
+                { label: '6', value: 6, color: 'red' },
                 ]"
                 type="radio"
                 inline
-                v-model="form.class_histologic_grade"
+                v-model="form.ishak"
             />
             </div>
-            <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
-            class_AFP
-            <q-option-group
-                :options="[
-                { label: '0', value: 0, color: 'green' },
-                { label: '1', value: 1, color: 'yellow' },
-                { label: '2', value: 2, color: 'orange' },
-                { label: '3', value: 3, color: 'red' },
-                ]"
-                type="radio"
-                inline
-                v-model="form.class_afp"
-            />
-            </div>
-            <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
-            class_Steatosis grade
-            <q-option-group
-                :options="[
-                { label: '0', value: 0, color: 'green' },
-                { label: '1', value: 1, color: 'red' },
-                ]"
-                type="radio"
-                inline
-                v-model="form.class_steatosis_grade"
-            />
-            </div> -->
+            
+
         </div>
         <div class="row q-gutter-md justify-end">
             <q-btn unelevated color="teal-6" type="button" label="Clear" @click="reloadPage" />
@@ -140,6 +182,10 @@ export default defineComponent({
       'bclc': null,
       'histologic_grade': null,
       'afp': null,
+      'height': null,
+      'weight': null,
+      'bili': null,
+      'alb': null,
       // 'steatosis_grade2': null,
       
     })
@@ -189,6 +235,10 @@ export default defineComponent({
       form.bclc= demo_case.bclc,
       form.histologic_grade= demo_case.histologic_grade,
       form.afp= demo_case.afp
+      form.height= demo_case.height
+      form.weight= demo_case.weight
+      form.bili= demo_case.bili
+      form.alb= demo_case.alb
       // form.steatosis_grade2= demo_case.steatosis_grade2
     }
 
@@ -203,7 +253,37 @@ export default defineComponent({
         }
       }
     };
+
+    const calculateBMI = () => {
+      const heightInMeters = form.height / 100;
+      const weightInKg = form.weight;
+      form.bmi = heightInMeters > 0 && weightInKg > 0
+        ? (weightInKg / (heightInMeters * heightInMeters)).toFixed(2)
+        : null;
+    };
+
+    const calALBiscore = () => {
+      const bilirubin_mg_per_dL = form.bili;
+      const albumin_g_per_dL = form.alb;
+      const bilirubin_umol_per_L_conversion = 17.1;
+      const albumin_g_per_L_conversion = 10;
+      const bilirubin_umol_per_L = bilirubin_mg_per_dL * bilirubin_umol_per_L_conversion;
+      const albumin_g_per_L = albumin_g_per_dL * albumin_g_per_L_conversion;
+      const albi_score = Math.log10(bilirubin_umol_per_L) * 0.66 + albumin_g_per_L * (-0.085)
+      if (albi_score <= -2.60) {
+          form.albigrade = 1;
+        }
+      if (albi_score > -2.60 && albi_score <= -1.39) {
+          form.albigrade = 2;
+        }
+      if (albi_score > -1.39) {
+          form.albigrade = 3;
+        }
+    };
+
     const submitForm = () =>{
+      calculateBMI();
+      calALBiscore();
       api.post("submit/case", form)
         .then((response)=>{
           job_store.updateJobResult(response.data[0])
