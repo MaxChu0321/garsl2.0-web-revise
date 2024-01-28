@@ -281,6 +281,8 @@ export default defineComponent({
         }
     };
 
+
+
     const submitForm = () =>{
       calculateBMI();
       calALBiscore();
