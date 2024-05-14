@@ -39,3 +39,5 @@ quasar build
 
 ### Customize the configuration
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+
+到C:\Users\User\Desktop\garsl2.0 web  revise\frontend路徑下，再輸入quasar dev

@@ -13,21 +13,22 @@
             <thead>
               <tr>
                 <th class="text-left">Years</th>
-                <th class="text-right">1</th>
-                <th class="text-right">2</th>
-                <th class="text-right">3</th>
-                <th class="text-right">4</th>
-                <th class="text-right">5</th> 
+                <th class="text-center">1</th>
+                <th class="text-center">2</th>
+                <th class="text-center">3</th>
+                <th class="text-center">4</th>
+                <th class="text-center">5</th> 
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="text-left">Survival rate</td>
-                <td class="text-right">{{ job_store.survival_rates[0] }}</td>
-                <td class="text-right">{{ job_store.survival_rates[1] }}</td>
-                <td class="text-right">{{ job_store.survival_rates[2] }}</td>
-                <td class="text-right">{{ job_store.survival_rates[3] }}</td>
-                <td class="text-right">{{ job_store.survival_rates[4] }}</td>
+                <!-- <td class="text-center">{{ job_store.survival_rates[0] }}</td> -->
+                <td class="text-center">{{ formatPercentage(job_store.survival_rates[0]) }}</td>
+                <td class="text-center">{{ formatPercentage(job_store.survival_rates[1]) }}</td>
+                <td class="text-center">{{ formatPercentage(job_store.survival_rates[2]) }}</td>
+                <td class="text-center">{{ formatPercentage(job_store.survival_rates[3]) }}</td>
+                <td class="text-center">{{ formatPercentage(job_store.survival_rates[4]) }}</td>
               </tr>
             </tbody>
           </q-markup-table>
@@ -62,11 +63,12 @@ export default {
     const job_store = useJobStore()
 
     const survival_data = computed(() => ({
-      labels: ["1year", "2year","3year", "4year", "5year"],
+      labels: ["1 year", "2 year","3 year", "4 year", "5 year"],
       datasets: [
         {
           label: "Survival rate",
-          data: job_store.survival_rates,
+          // data: job_store.survival_rates,
+          data: job_store.survival_rates.map(rate => rate * 100),
           backgroundColor: '#1976d2',
         },
       ],
@@ -77,9 +79,17 @@ export default {
       scales: {
         y: {
           beginAtZero: true,
-          suggestedMax: 1
+          suggestedMax: 100,
+          
+          title: {
+          display: true,
+          text: 'Recurrence-free survival (%)', // 這裡設定你想顯示的標籤文字
+          color: '#666', // 可以設定標籤文字顏色
+          font: {
+          size: 14, // 設定文字大小
+          family: 'Arial' // 設定字體
         }
-      }
+      }}}
     };
     function getStatusClass(value) {
       // 根据 value 决定返回哪个 CSS 类
@@ -87,8 +97,10 @@ export default {
       if (value > 50) return 'medium';
       return 'low';
     }
-
-    return {job_store, survival_data, chart_options,getStatusClass}
+    function formatPercentage(value) {
+      return `${(value * 100).toFixed(0)}%`; // 轉換為整數百分比
+    }
+    return {job_store, survival_data, chart_options,getStatusClass, formatPercentage}
   },
 
 }
