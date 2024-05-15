@@ -4,22 +4,22 @@
       class="q-gutter-md custom-bg"
     >
       <div class="row q-gutter-md">
-        <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="0.1" v-model="form.tumor_size" label=" Tumor size(cm)" 
+        <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="0.1" v-model="form.tumor_size" label=" Tumor size (cm)" 
         :rules="[val => (val >= 0 && val <= 10) || 'Value must be between 0 and 10']"/>
         <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="1" v-model="form.tumor_number" label=" Tumor number" 
         :rules="[val => Number.isInteger(Number(val)) || 'Value must be an integer']"/>
         <!-- <q-input outlined color="indigo-9" type="number" step="0.01" v-model="form.bmi" label="BMI" /> -->
-        <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="0.01" v-model="form.height" label=" Height(cm)" />
-        <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="0.01" v-model="form.weight" label=" Weight(kg)" />
+        <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="0.01" v-model="form.height" label=" Height (cm)" />
+        <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="0.01" v-model="form.weight" label=" Weight (kg)" />
         
       </div>
       <div class="row q-gutter-md">
         <!-- <q-input outlined color="indigo-9" type="number" step="1" v-model="form.steatosis_grade" label="Steatosis grade" /> -->
         
-        <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="1" v-model="form.ast" label=" AST(U/L)" />
-        <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="1" v-model="form.afp" label=" AFP(ng/mL)" />
-        <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="0.01" v-model="form.bili" label=" Bilirubin(mg/dL)" />
-        <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="0.01" v-model="form.alb" label=" Albumin(g/dL)" />
+        <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="1" v-model="form.ast" label=" AST (U/L)" />
+        <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="1" v-model="form.afp" label=" AFP (ng/mL)" />
+        <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="0.01" v-model="form.bili" label=" Bilirubin (mg/dL)" />
+        <q-input class="custom-label-spacing"  outlined color="indigo-9" type="number" step="0.01" v-model="form.alb" label=" Albumin (g/dL)" />
         <!-- <q-input outlined color="indigo-9" type="number" step="1" v-model="form.hbsag" label="HBsAg" /> -->
       </div>
       <!-- <div class="row q-gutter-md"> -->
@@ -30,7 +30,7 @@
       <!-- </div> -->
 
       <div class="row q-gutter-md">
-        <q-input class="custom-label-spacing" outlined color="indigo-9" type="number" step="0.1" v-model="form.k" label="K(mmol/L)" />
+        <q-input class="custom-label-spacing" outlined color="indigo-9" type="number" step="0.1" v-model="form.k" label="K (mmol/L)" />
             <!-- <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
             ALBIgrade
             <q-option-group
@@ -50,9 +50,9 @@
             <q-option-group
                 :options="[
                 { label: '0', value: 0, color: 'green' },
-                { label: '1', value: 1, color: 'yellow' },
-                { label: '2', value: 2, color: 'orange' },
-                { label: '3', value: 3, color: 'red' },
+                { label: 'A', value: 1, color: 'yellow' },
+                { label: 'B', value: 2, color: 'orange' },
+                { label: 'C', value: 3, color: 'red' },
                 ]"
                 type="radio"
                 inline
