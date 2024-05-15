@@ -41,6 +41,8 @@
             :data="survival_data"
             :plugins="chart_plugins"
           />
+          <!-- <Bar id="survival-chart" :options="chart_options" :data="survival_data" :plugins="chart_plugins"/> -->
+
         </q-card-section>
       </q-card>
     </div>
@@ -50,32 +52,83 @@
 
 <script>
 import { Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js'
 import { useJobStore } from 'stores/job'
 import { computed } from 'vue';
 import Chart from 'chart.js/auto';
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+// ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+ChartJS.register(Title, Tooltip, Legend, BarElement, LineElement, CategoryScale, LinearScale, PointElement)
 
 export default {
   name: 'CaseResultPage',
-  components: { Bar },
+  components: { Bar  },
   setup() {
     const job_store = useJobStore()
 
+    // const survival_data = computed(() => ({
+    //   labels: ["1 year", "2 year","3 year", "4 year", "5 year"],
+    //   datasets: [
+    //     {
+    //       label: "Survival rate",
+    //       // data: job_store.survival_rates,
+    //       data: job_store.survival_rates.map(rate => rate * 100),
+    //       backgroundColor: '#1976d2',
+    //     },
+    //     {
+    //       type: 'line',
+    //       label: 'Survival Trend',
+    //       data: job_store.survival_rates.map(rate => rate * 100),
+    //       borderColor: '#f87979',
+    //       fill: false,
+    //       tension: 0.1, // 這會讓線條稍微彎曲
+    //       pointBackgroundColor: '#f87979',
+    //       pointBorderColor: '#fff'
+    //     }
+    //   ],
+    // }))
+
     const survival_data = computed(() => ({
-      labels: ["1 year", "2 year","3 year", "4 year", "5 year"],
+      labels: ["1 year", "2 year", "3 year", "4 year", "5 year"],
       datasets: [
         {
-          label: "Survival rate",
-          // data: job_store.survival_rates,
+          type: 'bar',
+          label: 'Survival rate',
           data: job_store.survival_rates.map(rate => rate * 100),
           backgroundColor: '#1976d2',
+          order:2,
         },
+        {
+          type: 'line',
+          label: '',
+          data: job_store.survival_rates.map(rate => rate * 100),
+          borderColor: '#f87979',
+          borderWidth: 3,
+          fill: false,
+          tension: 0.5, // 調整曲線的彎曲程度
+          pointBackgroundColor: '#f87979',
+          pointBorderColor: '#fff',
+          pointBorderWidth: 2,
+          pointRadius: 5,
+          order:1,
+        }
       ],
-    }))
+    }));
 
     const chart_options = {
       responsive: true,
+
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            filter: function(item, chart) {
+              // 只顯示有標籤的數據集
+              return item.text !== '';
+            }
+          }
+        }
+      },
+
       scales: {
         y: {
           beginAtZero: true,
