@@ -12,12 +12,12 @@
           <q-markup-table :separator="'vertical'" flat bordered>
             <thead>
               <tr>
-                <th class="text-left">Years</th>
-                <th class="text-center">1</th>
-                <th class="text-center">2</th>
-                <th class="text-center">3</th>
-                <th class="text-center">4</th>
-                <th class="text-center">5</th> 
+                <th class="text-left">Months</th>
+                <th class="text-center">6</th>
+                <th class="text-center">12</th>
+                <th class="text-center">18</th>
+                <th class="text-center">24</th>
+                <!-- <th class="text-center">5</th>  -->
               </tr>
             </thead>
             <tbody>
@@ -28,7 +28,7 @@
                 <td class="text-center">{{ formatPercentage(job_store.survival_rates[1]) }}</td>
                 <td class="text-center">{{ formatPercentage(job_store.survival_rates[2]) }}</td>
                 <td class="text-center">{{ formatPercentage(job_store.survival_rates[3]) }}</td>
-                <td class="text-center">{{ formatPercentage(job_store.survival_rates[4]) }}</td>
+                <!-- <td class="text-center">{{ formatPercentage(job_store.survival_rates[4]) }}</td> -->
               </tr>
             </tbody>
           </q-markup-table>
@@ -88,7 +88,7 @@ export default {
     // }))
 
     const survival_data = computed(() => ({
-      labels: ["1 year", "2 year", "3 year", "4 year", "5 year"],
+      labels: ["6 month", "12 month", "18 month", "24 month"],
       datasets: [
         {
           type: 'bar',

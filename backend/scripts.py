@@ -51,11 +51,11 @@ def predict(estimator, feature_df, mode="case"):
     
 
     survf = estimator.predict_survival_function(feature_df)
-    year1_probs = pd.Series(np.asarray([ fn(12) for fn in survf])).round(2)
-    year2_probs = pd.Series(np.asarray([ fn(24) for fn in survf])).round(2)
-    year3_probs = pd.Series(np.asarray([ fn(36) for fn in survf])).round(2)
-    year4_probs = pd.Series(np.asarray([ fn(48) for fn in survf])).round(2)
-    year5_probs = pd.Series(np.asarray([ fn(60) for fn in survf])).round(2)
+    year1_probs = pd.Series(np.asarray([ fn(6) for fn in survf])).round(2)
+    year2_probs = pd.Series(np.asarray([ fn(12) for fn in survf])).round(2)
+    year3_probs = pd.Series(np.asarray([ fn(18) for fn in survf])).round(2)
+    year4_probs = pd.Series(np.asarray([ fn(24) for fn in survf])).round(2)
+    # year5_probs = pd.Series(np.asarray([ fn(60) for fn in survf])).round(2)
 
     results = pd.concat([preds, risk_groups], axis=1).to_dict(orient='records')
 
@@ -64,7 +64,7 @@ def predict(estimator, feature_df, mode="case"):
         year2_probs, 
         year3_probs, 
         year4_probs, 
-        year5_probs
+        # year5_probs
     ], axis=1).to_dict(orient='split')['data']
 
     if mode == "case":
@@ -77,7 +77,7 @@ def predict(estimator, feature_df, mode="case"):
             result['2_year_survival_rate'] = survival_result[idx][1]
             result['3_year_survival_rate'] = survival_result[idx][2]
             result['4_year_survival_rate'] = survival_result[idx][3]
-            result['5_year_survival_rate'] = survival_result[idx][4]
+            # result['5_year_survival_rate'] = survival_result[idx][4]
             results[idx] = result
 
     return results
