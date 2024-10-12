@@ -20,6 +20,7 @@ export function useTestCase(){
     'alb': 3.7,
     // 'bmi':20.16,
     // 'steatosis_grade2': 0,
+    'aimorphology_classification': 0
       
   })
 

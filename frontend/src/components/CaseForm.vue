@@ -133,6 +133,20 @@
                 v-model="form.ishak"
             />
             </div>
+
+            <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
+            AI Morphology classification
+            <q-option-group
+                :options="[
+                { label: '0', value: 0, color: 'green' },
+                { label: '1', value: 1, color: 'yellow' },
+                { label: '2', value: 2, color: 'red' },
+                ]"
+                type="radio"
+                inline
+                v-model="form.aimorphology_classification"
+            />
+            </div>
             
 
         </div>
@@ -186,6 +200,7 @@ export default defineComponent({
       'weight': null,
       'bili': null,
       'alb': null,
+      'aimorphology_classification': null,
       // 'steatosis_grade2': null,
       
     })
@@ -239,6 +254,7 @@ export default defineComponent({
       form.weight= demo_case.weight
       form.bili= demo_case.bili
       form.alb= demo_case.alb
+      form.aimorphology_classification= demo_case.aimorphology_classification
       // form.steatosis_grade2= demo_case.steatosis_grade2
     }
 
