@@ -307,6 +307,7 @@ export default defineComponent({
           job_store.updateJobResult(response.data[0])
           job_store.updateOriginalFormValues(form)
           console.log(job_store.risk_score)
+          console.log(job_store.originalFormValues)
           // Emit an event instead of navigating
           emit('formSubmitted', {
           originalFormValues: form,

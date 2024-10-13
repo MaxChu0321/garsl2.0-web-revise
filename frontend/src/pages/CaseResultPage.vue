@@ -44,6 +44,17 @@
           <!-- <Bar id="survival-chart" :options="chart_options" :data="survival_data" :plugins="chart_plugins"/> -->
 
         </q-card-section>
+
+        <q-card-section class="row justify-start">
+          <div>
+            <!-- AI Morphology classification: {{ job_store.originalFormValues.aimorphology_classification }} -->
+            AI Morphology classification : {{ getClassificationText(job_store.originalFormValues.aimorphology_classification) }}
+            <q-btn :color="getButtonColor(job_store.originalFormValues.aimorphology_classification)" size="sm" class="classification-btn q-ml-sm" />
+  
+          </div>
+        </q-card-section>
+
+
       </q-card>
     </div>
 
@@ -64,6 +75,20 @@ export default {
   components: { Bar  },
   setup() {
     const job_store = useJobStore()
+
+    const getButtonColor = (classification) => {
+      if (classification === 0) return 'green';  // 如果是 0 就返回綠色
+      if (classification === 1) return 'yellow'; // 如果是 1 就返回黃色
+      if (classification === 2) return 'red';    // 如果是 2 就返回紅色
+      return 'grey'; // 預設顏色，如果沒有分類值
+    };
+
+    const getClassificationText = (classification) => {
+      if (classification === 0) return 'Encapsulated nodular type';       // 對應 0 的描述
+      if (classification === 1) return 'Simple nodular type with extranodular growth'; // 對應 1 的描述
+      if (classification === 2) return 'Confluent multinodular type or Infiltrative type'; // 對應 2 的描述
+      return 'Unknown'; // 預設值，若沒有匹配到
+    };
 
     // const survival_data = computed(() => ({
     //   labels: ["1 year", "2 year","3 year", "4 year", "5 year"],
@@ -153,7 +178,7 @@ export default {
     function formatPercentage(value) {
       return `${(value * 100).toFixed(0)}%`; // 轉換為整數百分比
     }
-    return {job_store, survival_data, chart_options,getStatusClass, formatPercentage}
+    return {job_store, survival_data, chart_options,getButtonColor,getClassificationText,getStatusClass, formatPercentage}
   },
 
 }
@@ -171,5 +196,12 @@ export default {
 .custom-bg {
   background-color: rgba(255, 255, 255, 0.7); /* 白色背景，50% 透明度 */ 
   
+}
+.classification-btn {
+  width: 20px;    /* 設置按鈕的寬度，使其變成長條形 */
+  height: 8px;   /* 設置按鈕的高度 */
+  min-height: 10px; 
+  margin-left: 8px;  /* 調整按鈕與文字的間距 */
+  border-radius: 6px;  /* 圓角設置，使它更像一個長條 */
 }
 </style>
