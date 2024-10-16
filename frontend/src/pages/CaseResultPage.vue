@@ -84,9 +84,9 @@ export default {
     };
 
     const getClassificationText = (classification) => {
-      if (classification === 0) return 'Encapsulated nodular type';       // 對應 0 的描述
-      if (classification === 1) return 'Simple nodular type with extranodular growth'; // 對應 1 的描述
-      if (classification === 2) return 'Confluent multinodular type or Infiltrative type'; // 對應 2 的描述
+      if (classification === 0) return 'Low-risk morphology ';       // 對應 0 的描述
+      if (classification === 1) return 'Intermediate-risk morphology '; // 對應 1 的描述
+      if (classification === 2) return 'High-risk morphology '; // 對應 2 的描述
       return 'Unknown'; // 預設值，若沒有匹配到
     };
 

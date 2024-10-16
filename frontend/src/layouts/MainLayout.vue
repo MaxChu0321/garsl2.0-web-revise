@@ -5,21 +5,23 @@
       <q-toolbar >
         <q-toolbar-title @click="backHome" class="text-center">
           <span class="cursor-pointer">
-            <span class="special-letter">G</span>enetic 
-            <span class="special-letter">A</span>lgorithm 
+            <span class="special-letter">E</span>volutionary 
+            <span class="special-letter">L</span>earning-Derived 
+            <span class="special-letter">M</span>ultimodal Models 
             for Predicting
-            <!-- <span class="special-letter">P</span>redicting  -->
+            <span class="special-letter">E</span>arly 
             <span class="special-letter">R</span>ecurrence 
             after 
             <span class="special-letter">S</span>urgery 
             of 
             <span class="special-letter">L</span>iver Cancer
-            <span class="special-letter">2.0</span>
+            
               </span>
         </q-toolbar-title>
         
       </q-toolbar>
     </q-header>
+
 
     <q-page-container>
       <router-view />

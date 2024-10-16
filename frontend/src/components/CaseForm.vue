@@ -134,7 +134,7 @@
             />
             </div>
 
-            <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
+            <!-- <div class="q-pa-sm rounded-borders" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
             AI Morphology classification
             <q-option-group
                 :options="[
@@ -146,7 +146,7 @@
                 inline
                 v-model="form.aimorphology_classification"
             />
-            </div>
+            </div> -->
             
 
         </div>
